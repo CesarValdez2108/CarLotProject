@@ -14,25 +14,22 @@ public class App {
             marca.setBrandName("BMW");
             BrandPool.get().registerComponent(marca);
             
-            Model modeloSport = new Model();
+            Model modeloSport = new Model(marca);
             modeloSport.setModelName("300-I");
-            modeloSport.bindToBrand(marca);
             ModelPool.get().registerComponent(modeloSport);
 
-            Model modeloCasual = new Model();
+            Model modeloCasual = new Model(marca);
             modeloCasual .setModelName("X5");
-            modeloCasual.bindToBrand(marca);
             ModelPool.get().registerComponent(modeloCasual);
 
-            Vehicle carro1 = new Vehicle();
-            carro1.bindToModel(modeloCasual);
+            Vehicle carro1 = new Vehicle(modeloCasual);
             VehiclePool.get().registerComponent(carro1);
 
             System.out.println("Elementos totales(Alta): " + BrandPool.get().getComponentAt(0).countChildrenRecurively());
 
             //Demostracion Cambios
             System.out.println("Nombre del modelo de carro antes de actualizar: " + carro1.getModel().getModelName());
-            Model modeloSus = new Model();
+            Model modeloSus = new Model(null);
             modeloSus.setModelName("AmongusCar");
             ModelPool.get().updateComponent(modeloCasual, modeloSus);
             System.out.println("Nombre del modelo de carro despues de actualizar: " + carro1.getModel().getModelName());

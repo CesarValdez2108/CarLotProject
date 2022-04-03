@@ -4,11 +4,12 @@ import DataManager.Pool.*;
 public class Vehicle extends Component{
     //TODO: Add fields and get/set methods
     
-    public void bindToModel(Model modelObj) throws ComponentNotBoundToPool{
-        if(!ModelPool.get().componentIsRegisteredAtPool(modelObj)){
+    public Vehicle(Model model) throws ComponentNotBoundToPool{
+        if(model == null);
+        if(!ModelPool.get().componentIsRegisteredAtPool(model)){
             throw new ComponentNotBoundToPool("The 'model' object passed to bindToModel does not exist inside ModelPool");
         }
-        modelObj.addChild(this);
+        model.addChild(this);
     }
     
     public Model getModel(){
